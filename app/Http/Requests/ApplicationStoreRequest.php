@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\StateType;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Enum;
 
 class ApplicationStoreRequest extends FormRequest
 {
@@ -26,6 +28,7 @@ class ApplicationStoreRequest extends FormRequest
             'email' => 'email',
             'phone_number' => 'string',
             'description' => 'string',
+            'state' => ['string', new Enum(StateType::class)],
         ];
     }
 }
