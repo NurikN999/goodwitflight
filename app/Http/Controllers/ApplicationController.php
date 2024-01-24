@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Repositories\Interfaces\ApplicationRepositoryInterface;
 use App\Http\Requests\ApplicationStoreRequest;
+use App\Http\Requests\ApplicationUpdateRequest;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\Request;
 
@@ -34,7 +35,10 @@ class ApplicationController extends Controller
         );
     }
 
-    public function update(Request $request, int $id)
+    public function update(
+        ApplicationUpdateRequest $request,
+        int $id
+    )
     {
         return response(
             $this->applicationRepository->update($request->all(), $id),
