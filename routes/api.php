@@ -17,13 +17,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/applications', [ApplicationController::class, 'store']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
 
     Route::prefix('/applications')->group(function () {
         Route::get('/', [ApplicationController::class, 'index']);
         Route::get('/{id}', [ApplicationController::class, 'show']);
-        Route::post('/', [ApplicationController::class, 'store']);
         Route::put('/{id}', [ApplicationController::class, 'update']);
         Route::delete('/{id}', [ApplicationController::class, 'destroy']);
     });
