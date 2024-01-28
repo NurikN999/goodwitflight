@@ -11,14 +11,20 @@ class ApplicationRepository implements ApplicationRepositoryInterface
 
     public function all()
     {
-        return ApplicationResource::collection(Application::all());
+        return [
+            'success' => true,
+            'data' => ApplicationResource::collection(Application::all())
+        ];
     }
 
     public function create(array $data)
     {
         $application = Application::create($data);
 
-        return new ApplicationResource($application);
+        return [
+            'success' => true,
+            'data' => new ApplicationResource($application)
+        ];
     }
 
     public function update(array $data, int $id)
@@ -27,7 +33,10 @@ class ApplicationRepository implements ApplicationRepositoryInterface
 
         $application->update($data);
 
-        return new ApplicationResource($application);
+        return [
+            'success' => true,
+            'data' => new ApplicationResource($application)
+        ];
     }
 
     public function delete(int $id)
@@ -36,17 +45,26 @@ class ApplicationRepository implements ApplicationRepositoryInterface
 
         $application->delete();
 
-        return null;
+        return [
+            'success' => true,
+            'data' => null
+        ];
     }
 
     public function findApplicationById(int $id)
     {
-        return new ApplicationResource(Application::find($id));
+        return [
+            'success' => true,
+            'data' => new ApplicationResource(Application::find($id))
+        ];
     }
 
     public function findApplictionByState(string $state)
     {
-        return ApplicationResource::collection(Application::where('state', $state)->get());
+        return [
+            'success' => true,
+            'data' => ApplicationResource::collection(Application::where('state', $state)->get())
+        ];
     }
 
 }

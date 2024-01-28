@@ -24,13 +24,18 @@ class ApplicationController extends Controller
 
     public function show(int $id)
     {
-        return response($this->applicationRepository->findApplicationById($id), Response::HTTP_OK);
+        return response()->json(
+            $this->applicationRepository->findApplicationById($id),
+            Response::HTTP_OK
+        );
     }
 
     public function store(ApplicationStoreRequest $request)
     {
-        return response(
-            $this->applicationRepository->create($request->all()),
+        return response()->json(
+            $this->applicationRepository->create(
+                array_merge($request->all(), ['state' => 'new'])
+            ),
             Response::HTTP_CREATED
         );
     }
