@@ -9,7 +9,7 @@ use App\Models\User;
 class UserRepository implements UserRepositoryInterface
 {
 
-    public function all()
+    public function all($filters = [])
     {
         $users = User::all();
 

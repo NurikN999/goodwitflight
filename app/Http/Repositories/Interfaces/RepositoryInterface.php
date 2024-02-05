@@ -4,7 +4,7 @@ namespace App\Http\Repositories\Interfaces;
 
 interface RepositoryInterface
 {
-    public function all();
+    public function all(array $filters = []);
 
     public function create(array $data);
 

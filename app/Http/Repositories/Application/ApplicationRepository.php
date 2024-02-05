@@ -9,11 +9,17 @@ use App\Models\Application;
 class ApplicationRepository implements ApplicationRepositoryInterface
 {
 
-    public function all()
+    public function all($filters = [])
     {
+        $query = Application::query();
+
+        if (isset($filters['state'])) {
+            $query->where('state', $filters['state']);
+        }
+
         return [
             'success' => true,
-            'data' => ApplicationResource::collection(Application::all())
+            'data' => ApplicationResource::collection($query->get())
         ];
     }
 

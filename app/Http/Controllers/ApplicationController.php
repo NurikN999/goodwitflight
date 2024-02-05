@@ -17,9 +17,10 @@ class ApplicationController extends Controller
         $this->applicationRepository = $applicationRepository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return response($this->applicationRepository->all(), Response::HTTP_OK);
+        $filters = $request->query();
+        return response($this->applicationRepository->all($filters), Response::HTTP_OK);
     }
 
     public function show(int $id)
